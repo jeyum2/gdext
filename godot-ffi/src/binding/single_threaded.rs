@@ -149,8 +149,7 @@ impl BindingStorage {
 
         // We only check if we are in the main thread in debug builds if we aren't building for a non-threaded Godot build,
         // since we could otherwise assume there won't be multi-threading.
-        // TODO: figure out why the panic happens on Android, and how to resolve it. See https://github.com/godot-rust/gdext/pull/780.
-        #[cfg(all(debug_assertions, not(wasm_nothreads), not(target_os = "android")))]
+        #[cfg(all(debug_assertions, not(wasm_nothreads)))]
         {
             let main_thread_id = storage.main_thread_id.get().expect(
                 "Godot engine not available; make sure you are not calling it from unit/doc tests",
